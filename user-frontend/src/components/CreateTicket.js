@@ -59,8 +59,9 @@ const CreateTicket = ({ open, onClose }) => {
                     </Typography>
 
                     <form onSubmit={formik.handleSubmit}>
-                        <Box sx={{ mb: 3 }}>
-                            <npmGrid container spacing={2}>
+                        <Paper elevation={1} sx={{ padding: 3, mb: 3 }}>
+                            <Typography variant="h6" gutterBottom>Details</Typography>
+                            <Grid container spacing={2}>
                                 <Grid item xs={6}>
                                     <TextField
                                         select
@@ -91,12 +92,6 @@ const CreateTicket = ({ open, onClose }) => {
                                         <MenuItem value="Category2">Category 2</MenuItem>
                                     </TextField>
                                 </Grid>
-                            </npmGrid>
-                        </Box>
-
-                        <Paper elevation={1} sx={{ padding: 3 }}>
-                            <Typography variant="h6" gutterBottom>Details</Typography>
-                            <Grid container spacing={2}>
                                 <Grid item xs={6}>
                                     <TextField
                                         label="Product Name"
@@ -169,3 +164,4 @@ const CreateTicket = ({ open, onClose }) => {
 };
 
 export default CreateTicket;
+
