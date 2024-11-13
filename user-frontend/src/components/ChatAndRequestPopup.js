@@ -20,6 +20,7 @@ import SendIcon from '@mui/icons-material/Send';
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import WorkOutlineIcon from '@mui/icons-material/WorkOutline';
 import AttachmentIcon from '@mui/icons-material/AttachFile';
+import CloseIcon from '@mui/icons-material/Close';
 import WorkTrack from './WorkTrack';
 
 const ChatAndRequestPopup = ({ darkMode }) => {
@@ -33,7 +34,7 @@ const ChatAndRequestPopup = ({ darkMode }) => {
         { id: 1, sender: 'Mahinda', text: "I've finished with the requirement doc! You can look over." },
         { id: 2, sender: 'You', text: "I'll look at this today." }
     ]);
-    const [file, setFile] = useState(null); // Track the selected file
+    const [file, setFile] = useState(null);
 
     const handleSendMessage = () => {
         if (message.trim() || file) {
@@ -41,16 +42,16 @@ const ChatAndRequestPopup = ({ darkMode }) => {
                 id: messages.length + 1,
                 sender: 'You',
                 text: message,
-                file: file ? file.name : null // Add file name if file is attached
+                file: file ? file.name : null
             };
             setMessages((prevMessages) => [...prevMessages, newMessage]);
             setMessage('');
-            setFile(null); // Clear the file after sending
+            setFile(null);
         }
     };
 
     const handleFileChange = (event) => {
-        setFile(event.target.files[0]); // Set the selected file
+        setFile(event.target.files[0]);
     };
 
     return (
@@ -62,7 +63,8 @@ const ChatAndRequestPopup = ({ darkMode }) => {
                 height: '100vh',
                 padding: isSmallScreen ? 1 : 2,
                 overflow: 'hidden',
-                backgroundColor: darkMode ? theme.palette.background.default : 'transparent',
+                bgcolor: 'background.default',
+                color: 'text.primary',
             }}
         >
             {/* Ticket Information Box */}
@@ -74,6 +76,7 @@ const ChatAndRequestPopup = ({ darkMode }) => {
                     boxShadow: 1,
                     padding: isSmallScreen ? 2 : 3,
                     overflowY: 'auto',
+                    bgcolor: darkMode ? '#333333FF' : 'background.paper',
                 }}
             >
                 <Typography variant={isSmallScreen ? 'h6' : 'h5'} gutterBottom>
@@ -92,9 +95,7 @@ const ChatAndRequestPopup = ({ darkMode }) => {
                     Request Details
                 </Typography>
                 <Typography variant="body2">
-                    A production error is when a product is manufactured differently than its intended design
-                    A production error is when a product is manufactured differently than its intended design
-                    A production error is when a product is manufactured differently than its intended design
+                    A production error is when a product is manufactured differently than its intended design.
                 </Typography>
 
                 {/* Status and Chips */}
@@ -149,10 +150,16 @@ const ChatAndRequestPopup = ({ darkMode }) => {
                         padding: 2,
                         borderRadius: 2,
                         boxShadow: 3,
+                        bgcolor: 'background.paper',
                     },
                 }}
             >
-                <DialogTitle>Chat</DialogTitle>
+                <DialogTitle sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                    Chat
+                    <IconButton onClick={() => setShowChatBox(false)}>
+                        <CloseIcon />
+                    </IconButton>
+                </DialogTitle>
                 <DialogContent dividers>
                     <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
                         <Box sx={{ flex: 1, overflowY: 'auto', paddingX: 1, maxHeight: '300px' }}>
@@ -241,10 +248,16 @@ const ChatAndRequestPopup = ({ darkMode }) => {
                         padding: 2,
                         borderRadius: 2,
                         boxShadow: 3,
+                        bgcolor: 'background.paper',
                     },
                 }}
             >
-                <DialogTitle>Work Track</DialogTitle>
+                <DialogTitle sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                    Work Track
+                    <IconButton onClick={() => setShowWorkTrack(false)}>
+                        <CloseIcon />
+                    </IconButton>
+                </DialogTitle>
                 <DialogContent dividers>
                     <WorkTrack />
                 </DialogContent>
